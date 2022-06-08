@@ -1,0 +1,30 @@
+<mat-tree class="tree" [dataSource]="dataSource" [treeControl]="treeControl">
+  <mat-tree-node
+    *matTreeNodeDef="let node"
+    class="tree-node"
+    [class.tree-node_selected]="isSelected(node.path)"
+    matTreeNodeToggle
+    (click)="select(node.path)"
+  >
+    {{node.name}}
+  </mat-tree-node>
+  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+    <div
+      class="tree-node mat-tree-node"
+      matTreeNodeToggle
+      [attr.aria-label]="'Toggle ' + node.name"
+    >
+      <mat-icon>
+        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+      {{node.name}}
+    </div>
+    <div
+      class="tree-node__children"
+      [class.tree-node__children_expanded]="treeControl.isExpanded(node)"
+      role="group"
+    >
+      <ng-container matTreeNodeOutlet></ng-container>
+    </div>
+  </mat-nested-tree-node>
+</mat-tree>

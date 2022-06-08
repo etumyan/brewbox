@@ -1,0 +1,27 @@
+<div class="view">
+  <ng-template #renderTarget></ng-template>
+</div>
+<div class="options">
+  <table class="table">
+    <thead>
+      <tr class="table-row table-row_type_head">
+        <th class="table-cell table-cell_type_head" style="width: 25%;">Name</th>
+        <th class="table-cell table-cell_type_head" style="width: 25%;">Type</th>
+        <th class="table-cell table-cell_type_head">Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let input of inputs" class="table-row table-row_type_body">
+        <td class="table-cell table-cell_type_body">
+          {{input?.name}}
+        </td>
+        <td class="table-cell table-cell_type_body">
+          {{input?.type}}
+        </td>
+        <td class="table-cell table-cell_type_body">
+          {{input?.defaultValue}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

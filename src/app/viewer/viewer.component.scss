@@ -1,0 +1,36 @@
+:host {
+  display: grid;
+  grid-template-rows: auto 320px;
+}
+
+.view {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.options {
+  overflow: auto;
+  border-top: 1px dashed #e6e6e6;
+}
+
+.table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+.table-cell {
+  padding: 12px;
+}
+
+.table-cell_type_head {
+  color: rgba(0, 80, 115, .75);
+  text-align: left;
+  background-color: rgba(0, 180, 255, .125);
+}
+
+.table-cell_type_body {
+  border-top: 1px solid rgba(0, 80, 115, .125);
+}

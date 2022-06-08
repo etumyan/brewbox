@@ -1,0 +1,38 @@
+.mat-tree-node {
+  min-height: 0;
+}
+
+.tree-node {
+  margin-bottom: 4px;
+  padding: 8px 8px 8px 4px;
+  color: rgba(0, 80, 115, .625);
+  font-family: 'DM Sans', 'Roboto', 'Helvetica Neue', sans-serif;
+  background-color: rgba(0, 180, 255, .125);
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  &:hover {
+    border-color: rgba(0, 180, 255, .125);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+.tree-node__children {
+  display: none;
+  padding-left: 20px;
+}
+
+.tree-node__children_expanded {
+  display: block;
+}
+
+.tree-node__children > .tree-node {
+  padding-left: 8px;
+  background-color: rgba(0, 180, 255, .0625);
+
+  &_selected {
+    color: #fff;
+    background-color: rgba(0, 80, 255, .625);
+  }
+}

@@ -1,0 +1,17 @@
+@import 'normalize.css/normalize.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  color: #4c4c4c;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+}
