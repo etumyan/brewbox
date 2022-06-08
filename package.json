@@ -1,6 +1,8 @@
 {
   "name": "brewbox",
+  "description": "A tool for developing Angular component libraries",
   "version": "1.0.0",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,7 +10,6 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~13.3.0",
     "@angular/cdk": "^13.3.9",
@@ -45,5 +46,27 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.6.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/etumyan/brewbox.git"
+  },
+  "homepage": "https://github.com/etumyan/brewbox",
+  "bugs": {
+    "url": "https://github.com/etumyan/brewbox/issues"
+  },
+  "keywords": [
+    "brewbox",
+    "ui",
+    "library",
+    "kit",
+    "development",
+    "build",
+    "design",
+    "story",
+    "stories",
+    "cli",
+    "angular",
+    "typescript"
+  ]
 }
