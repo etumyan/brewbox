@@ -3,6 +3,9 @@
   "description": "A tool for developing Angular component libraries",
   "version": "1.0.1",
   "license": "MIT",
+  "bin": {
+    "brewbox": "./bin/index.js"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -24,6 +27,7 @@
     "@compodoc/compodoc": "^1.1.19",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.3",
+    "death": "^1.1.0",
     "fs-extra": "^10.1.0",
     "glob": "^8.0.3",
     "normalize.css": "^8.0.1",

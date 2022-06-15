@@ -4,7 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 
 import { stories } from '../../stories';
 import { parsePath } from '../utils/parse-path';
-import docs from '../../../tmp/documentation.json';
+import { default as docs } from '../../../documentation.json';
 
 interface ComponentInput {
   name: string;

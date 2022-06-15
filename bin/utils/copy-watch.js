@@ -24,7 +24,7 @@ module.exports = (src, dest, filter, onChange, options = {}) => {
 
   const makeDir = _path => {
     if (filter && !filter(_path)) return;
-    fs.mkdirs(getTargetPath(_path));
+    fs.ensureDir(getTargetPath(_path));
   };
 
   watcher

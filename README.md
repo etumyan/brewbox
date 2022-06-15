@@ -1,7 +1,7 @@
 <br>
 <br>
 <p align="center">
-  <img src="https://github.com/etumyan/brewbox/blob/master/src/assets/logo.svg" width="360" alt="Brewbox Logo">
+  <img src="https://github.com/etumyan/brewbox/blob/master/app/src/assets/logo.svg" width="360" alt="Brewbox Logo">
 </p>
 <p align="center">
   <img src="https://img.shields.io/github/package-json/v/etumyan/brewbox" alt="Brewbox Version">
