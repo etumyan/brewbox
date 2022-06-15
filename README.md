@@ -16,6 +16,27 @@ Install package:
 npm install -g brewbox
 ```
 
+Create your stories describing them in files named _*.stories.ts_ like so:
+
+```typescript
+// button.stories.ts
+
+import { ButtonComponent } from './button.component';
+
+export default {
+  title: 'Components/Button',
+  component: ButtonComponent,
+};
+
+export const Primary = args => ({
+  props: args,
+});
+
+Primary.args = {
+  text: 'Button',
+};
+```
+
 Run in the root of an Angular workspace:
 
 ```
