@@ -31,6 +31,6 @@ import { ViewerComponent } from './viewer/viewer.component';
     CommonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -16,8 +16,8 @@ module.exports = () => new Promise(async resolve => {
 
   const task = exec([
     'npx @compodoc/compodoc',
-    `--tsconfig ./tsconfig.compodoc.json`,
-    `--output ../`,
+    '--tsconfig ./tsconfig.compodoc.json',
+    '--output ../',
     '--exportFormat json',
     '--watch',
     '--serve',

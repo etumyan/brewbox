@@ -20,7 +20,7 @@ interface ComponentInput {
 })
 export class ViewerComponent implements OnInit {
   @ViewChild('renderTarget', { read: ViewContainerRef, static: true })
-  renderTarget!: ViewContainerRef;
+    renderTarget!: ViewContainerRef;
 
   stories: any = stories;
 
