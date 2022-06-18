@@ -2,13 +2,13 @@
   <mat-tree-node
     *matTreeNodeDef="let node"
     class="tree-node"
-    [class.tree-node_selected]="isSelected(node.path)"
+    [class.tree-node_selected]="isNodeSelected(node.path)"
     matTreeNodeToggle
-    (click)="select(node.path)"
+    (click)="selectNode(node.path)"
   >
     {{node.name}}
   </mat-tree-node>
-  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+  <mat-nested-tree-node *matTreeNodeDef="let node; when: isNodeHasChildren">
     <div
       class="tree-node mat-tree-node"
       matTreeNodeToggle
