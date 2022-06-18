@@ -13,6 +13,7 @@ const targetProjectRoot = path.join(targetWorkspaceRoot, 'projects', targetProje
 const tempRoot = fs.mkdtempSync(os.tmpdir());
 const tempTargetWorkspaceRoot = path.join(tempRoot, 'target');
 const tempTargetProjectRoot = path.join(tempTargetWorkspaceRoot, 'projects', targetProjectName);
+const tempTargetProjectSource = path.join(tempTargetProjectRoot, 'src');
 
 module.exports = {
   root,
@@ -23,4 +24,5 @@ module.exports = {
   tempRoot,
   tempTargetWorkspaceRoot,
   tempTargetProjectRoot,
+  tempTargetProjectSource,
 };
