@@ -17,6 +17,7 @@ module.exports = () => {
     await buildTargetProject();
     process.chdir(paths.tempRoot);
     await buildApp();
+    cleanup();
   })();
 };
 

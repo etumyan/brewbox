@@ -4,23 +4,22 @@ const { hideBin } = require('yargs/helpers');
 const chalk = require('chalk');
 
 const logger = require('../../utils/logger');
+const getTargetProject = require('../../utils/get-target-project');
+const paths = require('../../paths');
 
 const argv = yargs(hideBin(process.argv)).argv;
 const checkmark = chalk.green('\u2713');
-const pointingRight = chalk.green('\u261E');
+const targetProject = getTargetProject(paths.targetWorkspaceRoot);
 
-module.exports = () => new Promise(resolve => {
-  logger.spinStart('Building Brewbox...');
+module.exports = watch => new Promise(resolve => {
+  logger.spinStart('Building the library...');
 
-  const task = exec('npx ng serve');
+  const task = exec(`npx ng build ${targetProject}${watch ? ' --watch' : ''}`);
 
   task.stdout.on('data', data => {
     const output = data.toString().toLowerCase();
     if (output.includes('build at')) {
-      logger.spinStop([
-        `${checkmark} Brewbox built successfully. Watching for changes...\n\r\n\r`,
-        `${pointingRight} Visit http://localhost:4200`,
-      ].join(''));
+      logger.spinStop(`${checkmark} Library built successfully\n\r`);
       resolve();
     }
   });

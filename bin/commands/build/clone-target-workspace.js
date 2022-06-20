@@ -36,23 +36,38 @@ const linkNodeModules = () => {
   );
 };
 
-module.exports = () => new Promise(resolve => {
-  const watcher = copyWatch(paths.targetWorkspaceRoot, paths.tempTargetWorkspaceRoot, _path => micromatch.isMatch(
-    _path,
-    '**',
-    {
-      dot: true,
-      ignore: ignorePatterns,
-    },
-  ));
-  watcher.on('ready', async () => {
+module.exports = watch => new Promise(async resolve => {
+  if (watch) {
+    const watcher = copyWatch(paths.targetWorkspaceRoot, paths.tempTargetWorkspaceRoot, _path => micromatch.isMatch(
+      _path,
+      '**',
+      {
+        dot: true,
+        ignore: ignorePatterns,
+      },
+    ));
+    watcher.on('ready', async () => {
+      modifyNgPackagrConfig();
+      linkNodeModules();
+      await generatePublicApi(paths.tempTargetProjectRoot);
+      resolve();
+    });
+    watcher.on('change', async () => {
+      modifyNgPackagrConfig();
+      await generatePublicApi(paths.tempTargetProjectRoot);
+    });
+  } else {
+    fs.copySync(paths.targetWorkspaceRoot, paths.tempTargetWorkspaceRoot, _path => micromatch.isMatch(
+      _path,
+      '**',
+      {
+        dot: true,
+        ignore: ignorePatterns,
+      },
+    ));
     modifyNgPackagrConfig();
     linkNodeModules();
     await generatePublicApi(paths.tempTargetProjectRoot);
     resolve();
-  });
-  watcher.on('change', async () => {
-    modifyNgPackagrConfig();
-    await generatePublicApi(paths.tempTargetProjectRoot);
-  });
+  }
 });

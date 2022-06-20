@@ -51,7 +51,7 @@ function watchFiles(files, callback) {
   });
 }
 
-module.exports = async () => {
+module.exports = async watch => {
   logger.spinStart('Generating documentation...');
 
   const targetFiles = getTargetFiles();
@@ -68,7 +68,9 @@ module.exports = async () => {
 
   await generate();
 
-  watchFiles(targetFiles, generate);
+  if (watch) {
+    watchFiles(targetFiles, generate);
+  }
 
   logger.spinStop(`${checkmark} Documentation generated successfully\n\r`);
 };

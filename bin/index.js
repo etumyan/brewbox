@@ -10,6 +10,9 @@ const commands = require('./commands');
 const argv = yargs(hideBin(process.argv)).argv;
 
 switch (argv._[0]) {
+  case 'build':
+    commands.build();
+    break;
   case 'serve':
   case undefined:
     commands.serve();
