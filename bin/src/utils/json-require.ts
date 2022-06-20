@@ -1,8 +1,8 @@
-const nodeModule = require('module');
-const path = require('path');
+import nodeModule from 'module';
+import path from 'path';
 
 const localRequire = nodeModule.createRequire(path.resolve(__filename, '../'));
 
-module.exports = filePath => {
+export default (filePath: string) => {
   return localRequire(filePath);
 };

@@ -1,10 +1,10 @@
-const fs = require('fs');
+import fs from 'fs';
 
-module.exports = (filePath, modificator) => {
+export default (filePath: string, modificator: (data: any) => any) => {
   if (typeof modificator !== 'function') return;
 
   const rawData = fs.readFileSync(filePath);
-  const modifiedData = modificator(JSON.parse(rawData));
+  const modifiedData = modificator(JSON.parse(rawData as any));
 
   fs.writeFileSync(filePath, JSON.stringify(modifiedData));
 };

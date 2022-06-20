@@ -1,9 +1,9 @@
-const path = require('path');
-const fs = require('fs-extra');
+import path from 'path';
+import fs from 'fs-extra';
 
-const paths = require('../../paths');
+import paths from '../../paths';
 
-module.exports = () => {
+export default () => {
   fs.copySync(paths.appRoot, paths.tempRoot);
 
   fs.ensureSymlinkSync(

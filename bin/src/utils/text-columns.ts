@@ -1,5 +1,10 @@
-module.exports = (dataSource, columns) => {
-  const rows = [];
+interface Column {
+  key: string;
+  minWidth?: number;
+}
+
+export default (dataSource: any[], columns: Column[]) => {
+  const rows: string[] = [];
 
   dataSource.forEach(item => {
     let row = '\u0020\u0020';

@@ -1,10 +1,10 @@
-const os = require('os');
-const fs = require('fs');
-const path = require('path');
+import os from 'os';
+import fs from 'fs';
+import path from 'path';
 
-const getTargetProject = require('./utils/get-target-project');
+import getTargetProject from './utils/get-target-project';
 
-const root = path.resolve(__dirname, '../');
+const root = path.resolve(__dirname, '../../');
 const binRoot = path.join(root, 'bin');
 const appRoot = path.join(root, 'app');
 const targetWorkspaceRoot = process.cwd();
@@ -15,7 +15,7 @@ const tempTargetWorkspaceRoot = path.join(tempRoot, 'target');
 const tempTargetProjectRoot = path.join(tempTargetWorkspaceRoot, 'projects', targetProjectName);
 const tempTargetProjectSource = path.join(tempTargetProjectRoot, 'src');
 
-module.exports = {
+export default {
   root,
   binRoot,
   appRoot,

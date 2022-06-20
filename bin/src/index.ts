@@ -1,12 +1,10 @@
 #! /usr/bin/env node
 
-'use strict';
+import yargs from 'yargs/yargs';
+import { hideBin } from 'yargs/helpers';
 
-const yargs = require('yargs/yargs');
-const { hideBin } = require('yargs/helpers');
-
-const CommandManager = require('./utils/command-manager');
-const commands = require('./commands');
+import CommandManager from './utils/command-manager';
+import * as commands from './commands';
 
 const argv = yargs(hideBin(process.argv)).argv;
 

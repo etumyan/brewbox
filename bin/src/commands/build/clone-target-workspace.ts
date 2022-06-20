@@ -1,11 +1,11 @@
-const path = require('path');
-const fs = require('fs-extra');
-const micromatch = require('micromatch');
+import path from 'path';
+import fs from 'fs-extra';
+import micromatch from 'micromatch';
 
-const paths = require('../../paths');
-const copyWatch = require('../../utils/copy-watch');
-const modifyJsonFile = require('../../utils/modify-json-file');
-const generatePublicApi = require('./generate-target-project-public-api');
+import paths from '../../paths';
+import copyWatch from '../../utils/copy-watch';
+import modifyJsonFile from '../../utils/modify-json-file';
+import generatePublicApi from './generate-target-project-public-api';
 
 const ignorePatterns = [
   '**/.git',
@@ -23,7 +23,7 @@ const ignorePatterns = [
 
 const modifyNgPackagrConfig = () => {
   const ngPackagrConfigPath = path.join(paths.tempTargetProjectRoot, 'ng-package.json');
-  modifyJsonFile(ngPackagrConfigPath, data => {
+  modifyJsonFile(ngPackagrConfigPath, (data: any) => {
     data.lib.entryFile = 'src/brewbox-public-api.ts';
     return data;
   });
@@ -36,9 +36,9 @@ const linkNodeModules = () => {
   );
 };
 
-module.exports = watch => new Promise(async resolve => {
+export default (watch = false) => new Promise<void>(async resolve => {
   if (watch) {
-    const watcher = copyWatch(paths.targetWorkspaceRoot, paths.tempTargetWorkspaceRoot, _path => micromatch.isMatch(
+    const watcher = copyWatch(paths.targetWorkspaceRoot, paths.tempTargetWorkspaceRoot, (_path: string) => micromatch.isMatch(
       _path,
       '**',
       {
@@ -57,14 +57,16 @@ module.exports = watch => new Promise(async resolve => {
       await generatePublicApi(paths.tempTargetProjectRoot);
     });
   } else {
-    fs.copySync(paths.targetWorkspaceRoot, paths.tempTargetWorkspaceRoot, _path => micromatch.isMatch(
-      _path,
-      '**',
-      {
-        dot: true,
-        ignore: ignorePatterns,
-      },
-    ));
+    fs.copySync(paths.targetWorkspaceRoot, paths.tempTargetWorkspaceRoot, {
+      filter: (_path: string) => micromatch.isMatch(
+        _path,
+        '**',
+        {
+          dot: true,
+          ignore: ignorePatterns,
+        },
+      ),
+    });
     modifyNgPackagrConfig();
     linkNodeModules();
     await generatePublicApi(paths.tempTargetProjectRoot);

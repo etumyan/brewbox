@@ -1,17 +1,17 @@
-const ora = require('ora');
+import ora from 'ora';
 
 const log = console.log;
 
-let spinner;
+let spinner: any;
 
-module.exports = {
+export default {
   log,
 
-  spinStart: text => {
+  spinStart: (text: string) => {
     spinner = ora(text).start();
   },
 
-  spinStop: text => {
+  spinStop: (text: string) => {
     if (spinner) {
       spinner.stop();
       spinner = undefined;

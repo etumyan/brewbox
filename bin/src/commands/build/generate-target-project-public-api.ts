@@ -1,14 +1,14 @@
-const { EOL } = require('os');
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
+import { EOL } from 'os';
+import fs from 'fs';
+import path from 'path';
+import glob from 'glob';
 
-const leadingDot = require('../../utils/leading-dot');
-const trimFileExtension = require('../../utils/trim-file-extension');
+import leadingDot from '../../utils/leading-dot';
+import trimFileExtension from '../../utils/trim-file-extension';
 
-module.exports = projectRoot => {
-  return new Promise(async resolve => {
-    const getStoryFiles = workingDirectory => new Promise(resolve => {
+export default (projectRoot: string) => {
+  return new Promise<void>(async resolve => {
+    const getStoryFiles = (workingDirectory: any) => new Promise(resolve => {
       glob('**/*.stories.ts', {
         cwd: workingDirectory,
         absolute: true,
@@ -17,11 +17,11 @@ module.exports = projectRoot => {
       });
     });
 
-    const generateImportExpression = (filePath, i) => {
+    const generateImportExpression = (filePath: string, i: number) => {
       return `import * as __BREWBOX_STORIES_EXPORT_${i}__ from '${filePath}';`;
     };
 
-    const generateExportGroup = filePaths => {
+    const generateExportGroup = (filePaths: string[]) => {
       return [
         `export namespace __stories__ {${EOL}`,
         filePaths.map((_, i) => (
@@ -31,7 +31,7 @@ module.exports = projectRoot => {
       ].join('');
     };
 
-    const getRelativePath = filePath => (
+    const getRelativePath = (filePath: string) => (
       leadingDot(path.relative(
         `${projectRoot}/src`,
         filePath,
@@ -39,11 +39,11 @@ module.exports = projectRoot => {
     );
 
     const generateImport = () => new Promise(async resolve => {
-      const filePaths = await getStoryFiles(projectRoot);
+      const filePaths = await getStoryFiles(projectRoot) as string[];
 
       let output = `export * from './public-api';${EOL}${EOL}`;
 
-      output += filePaths.map((filePath, i) => (
+      output += filePaths.map((filePath: string, i: number) => (
         generateImportExpression(trimFileExtension(getRelativePath(filePath)), i)
       )).join(EOL);
 

@@ -1,25 +1,25 @@
-const yargs = require('yargs/yargs');
-const { hideBin } = require('yargs/helpers');
-const chalk = require('chalk');
-const glob = require('glob');
-const chokidar = require('chokidar');
-const debounce = require('lodash.debounce');
-const compodoc = require('@compodoc/compodoc');
+import yargs from 'yargs/yargs';
+import { hideBin } from 'yargs/helpers';
+import chalk from 'chalk';
+import glob from 'glob';
+import chokidar from 'chokidar';
+import debounce from 'lodash.debounce';
+import * as compodoc from '@compodoc/compodoc';
 
-const paths = require('../../paths');
-const logger = require('../../utils/logger');
+import paths from '../../paths';
+import logger from '../../utils/logger';
 
 const argv = yargs(hideBin(process.argv)).argv;
 const checkmark = chalk.green('\u2713');
 
 function getCompodocOptions() {
-  const options = {
+  const options: any = {
     output: '../',
     exportFormat: 'json',
   }
 
   // Any value (even false) set for silent option will disable output log
-  if (!argv.verbose) {
+  if (!(argv as any).verbose) {
     options.silent = true;
   }
 
@@ -38,7 +38,7 @@ function getTargetFiles() {
   });
 }
 
-function watchFiles(files, callback) {
+function watchFiles(files: string[], callback: () => {}) {
   const watcher = chokidar.watch(files, {
     ignoreInitial: true,
     persistent: true,
@@ -51,7 +51,7 @@ function watchFiles(files, callback) {
   });
 }
 
-module.exports = async watch => {
+export default async (watch = false) => {
   logger.spinStart('Generating documentation...');
 
   const targetFiles = getTargetFiles();
