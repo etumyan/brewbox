@@ -12,16 +12,25 @@ new CommandManager()
   .command(
     'serve',
     'Builds and serves in watch mode',
+    [
+      ['--project', 'Specifies particular project in Angular workspace directory'],
+      ['--verbose', 'Outputs additional information during execution'],
+    ],
     () => commands.serve(),
   )
   .command(
     'build',
     'Builds into an output directory',
+    [
+      ['--project', 'Specifies particular project in Angular workspace directory'],
+      ['--verbose', 'Outputs additional information during execution'],
+    ],
     () => commands.build(),
   )
   .command(
     'version',
     'Outputs current version',
+    [],
     () => commands.version(),
   )
   .init(argv);

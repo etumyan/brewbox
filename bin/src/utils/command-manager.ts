@@ -5,6 +5,7 @@ import textColumns from './text-columns';
 interface Command {
   name: string;
   description?: string;
+  options?: [string, string][];
   handler?: () => void;
 }
 
@@ -17,8 +18,8 @@ export default class CommandManager {
 
       output += `Commands:${EOL}`;
 
-      const dataSource = this.commands.map(({ name, description }) => ({
-        name,
+      const dataSource = this.commands.map(({ name, description, options }) => ({
+        name: `${name}${options?.length ? '\u0020[options]' : ''}`,
         description,
       }));
 
@@ -35,10 +36,11 @@ export default class CommandManager {
     },
   }];
 
-  command(name: string, description: string, handler: () => void) {
+  command(name: string, description: string, options: [string, string][], handler: () => void) {
     this.commands.push({
       name,
       description,
+      options,
       handler,
     });
 
