@@ -10,11 +10,15 @@
 <br>
 <br>
 
-Install package:
+## Installation
 
 ```
-npm install -g brewbox
+npm install brewbox
 ```
+
+## Usage
+
+### Stories definition
 
 Create your stories describing them in files named _*.stories.ts_ like so:
 
@@ -37,8 +41,37 @@ Primary.args = {
 };
 ```
 
-Run in the root of an Angular workspace:
+### CLI
+
+#### Help
 
 ```
-brewbox --project your-project-name
+Usage: brewbox [command]
+
+Commands:
+  serve [options]         Builds and serves in watch mode
+  build [options]         Builds into an output directory
+  version                 Outputs current version
+  help                    Lists available commands
+```
+
+#### Serve
+
+```
+Usage: brewbox serve [options]
+
+Options:
+  --project               Specifies particular project in Angular workspace directory
+  --verbose               Outputs additional information during execution
+```
+
+#### Build
+
+```
+Usage: brewbox build [options]
+
+Options:
+  --project               Specifies particular project in Angular workspace directory
+  --verbose               Outputs additional information during execution
+
 ```
